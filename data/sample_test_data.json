@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "test_user1@example.com",
+      "password": "TestPassword123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "test_user2@example.com",
+      "password": "TestPassword456",
+      "role": "user"
+    }
+  ],
+  "test_scenarios": {
+    "valid_login": {
+      "username": "test_user1@example.com",
+      "password": "TestPassword123",
+      "expected_result": "success"
+    },
+    "invalid_login": {
+      "username": "invalid@example.com",
+      "password": "WrongPassword",
+      "expected_result": "failure"
+    }
+  }
+}
