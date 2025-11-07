@@ -27,10 +27,23 @@ pip install openpyxl
 
 ### Usage
 
+**The Excel file path is a flexible parameter** - you can process any Excel file:
+
+```bash
+python utils/Test_data_generator.py <EXCEL_FILE> [options]
+```
+
 #### Generate All CVs
 
 ```bash
+# Default file
 python utils/Test_data_generator.py data/data_matrix.xlsx -o data/cv_test_data.json
+
+# Different file
+python utils/Test_data_generator.py path/to/your_file.xlsx -o output.json
+
+# Custom paths
+python utils/Test_data_generator.py /path/to/candidates.xlsx -o /path/to/results.json
 ```
 
 #### Generate Specific CV by Index
@@ -43,6 +56,15 @@ python utils/Test_data_generator.py data/data_matrix.xlsx -n 0
 
 ```bash
 python utils/Test_data_generator.py data/data_matrix.xlsx -o data/output.json --no-update
+```
+
+#### Process Multiple Files
+
+```bash
+# Process different files in sequence
+python utils/Test_data_generator.py data/january.xlsx -o data/jan_output.json
+python utils/Test_data_generator.py data/february.xlsx -o data/feb_output.json
+python utils/Test_data_generator.py data/march.xlsx -o data/mar_output.json
 ```
 
 ## Excel Structure
@@ -145,7 +167,11 @@ usage: Test_data_generator.py [-h] [-o OUTPUT] [-n NUMBER] [--no-update] excel_f
 Generate test CV data from Excel skill matrix
 
 positional arguments:
-  excel_file            Path to Excel file
+  excel_file            Path to Excel file (required - can be any .xlsx file)
+                        Examples:
+                          data/data_matrix.xlsx
+                          /path/to/your_file.xlsx
+                          C:\MyFolder\candidates.xlsx
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -154,6 +180,25 @@ optional arguments:
   -n NUMBER, --number NUMBER
                         Generate specific candidate by index (0-based)
   --no-update           Do not update Excel with generation results
+```
+
+### Usage Examples
+
+```bash
+# Example 1: Process default file
+python utils/Test_data_generator.py data/data_matrix.xlsx -o output.json
+
+# Example 2: Process different file
+python utils/Test_data_generator.py /path/to/my_data.xlsx -o results.json
+
+# Example 3: Process file with custom output location
+python utils/Test_data_generator.py data/candidates.xlsx -o /custom/path/output.json
+
+# Example 4: Process file and generate specific CV
+python utils/Test_data_generator.py data/test_data.xlsx -n 3
+
+# Example 5: Process without updating Excel
+python utils/Test_data_generator.py data/input.xlsx -o output.json --no-update
 ```
 
 ## Project Structure

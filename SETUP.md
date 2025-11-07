@@ -194,6 +194,13 @@ Example (first CV):
 
 ### Basic Usage
 
+**The Excel file path is a required parameter** - you can use any Excel file:
+
+```cmd
+python utils\Test_data_generator.py <EXCEL_FILE> -o <OUTPUT_JSON>
+```
+
+**Example with default file:**
 ```cmd
 python utils\Test_data_generator.py data\data_matrix.xlsx -o data\cv_test_data.json
 ```
@@ -203,6 +210,27 @@ This will:
 - ✅ Generate CV test data
 - ✅ Save JSON output to: `data\cv_test_data.json`
 - ✅ Update Excel with results in the last column
+
+### Using Different Excel Files
+
+You can process **any Excel file** by changing the path:
+
+#### Example 1: Different folder
+```cmd
+python utils\Test_data_generator.py C:\MyData\candidates.xlsx -o output\results.json
+```
+
+#### Example 2: Different filename
+```cmd
+python utils\Test_data_generator.py data\november_candidates.xlsx -o data\november_output.json
+```
+
+#### Example 3: Full path
+```cmd
+python utils\Test_data_generator.py "C:\Users\YourName\Documents\cv_data.xlsx" -o results.json
+```
+
+**Note**: Use quotes `"..."` if the path contains spaces.
 
 ### Command Options
 
@@ -226,6 +254,21 @@ python utils\Test_data_generator.py data\data_matrix.xlsx -o data\output.json --
 #### Show Help
 ```cmd
 python utils\Test_data_generator.py --help
+```
+
+### Command Syntax
+
+```
+python utils\Test_data_generator.py <excel_file> [options]
+
+Required:
+  excel_file           Path to Excel file (can be any .xlsx file)
+
+Options:
+  -o, --output FILE    Output JSON file path (default: cv_test_data.json)
+  -n, --number N       Generate specific candidate by index (0-based)
+  --no-update          Do not update Excel with results
+  -h, --help           Show help message
 ```
 
 ---
@@ -344,8 +387,11 @@ python -m pip install openpyxl
 ### Common Commands
 
 ```cmd
-# Generate all CVs
+# Generate all CVs from default file
 python utils\Test_data_generator.py data\data_matrix.xlsx -o data\output.json
+
+# Generate from different Excel file
+python utils\Test_data_generator.py C:\MyFolder\my_data.xlsx -o output.json
 
 # Generate specific CV (index 0)
 python utils\Test_data_generator.py data\data_matrix.xlsx -n 0
@@ -353,8 +399,27 @@ python utils\Test_data_generator.py data\data_matrix.xlsx -n 0
 # Skip Excel update
 python utils\Test_data_generator.py data\data_matrix.xlsx -o data\output.json --no-update
 
+# Process file with spaces in path (use quotes)
+python utils\Test_data_generator.py "C:\My Documents\cv data.xlsx" -o results.json
+
 # Show help
 python utils\Test_data_generator.py --help
+```
+
+### Quick Examples
+
+```cmd
+# Example 1: Default usage
+python utils\Test_data_generator.py data\data_matrix.xlsx -o data\cv_output.json
+
+# Example 2: Different input file, same output folder
+python utils\Test_data_generator.py data\november_data.xlsx -o data\november_cvs.json
+
+# Example 3: Custom paths for both input and output
+python utils\Test_data_generator.py C:\DataFiles\candidates.xlsx -o C:\Results\output.json
+
+# Example 4: Generate one specific CV without updating Excel
+python utils\Test_data_generator.py data\data_matrix.xlsx -n 5 --no-update
 ```
 
 ---
